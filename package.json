@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Express + ES6 + stylus boilerplate",
   "main": "bootstrap.js",
-  "author": "",
+  "author": "Apox <npm@apox.fr>",
   "license": "MIT",
   "dependencies": {
     "express": "^4.8.6",
