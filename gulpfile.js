@@ -19,7 +19,8 @@ function browserifyShare(){
   var b = browserify({
     cache: {},
     packageCache: {},
-    fullPaths: true
+    fullPaths: true,
+    debug: true
   });
   
   if(watch) {
