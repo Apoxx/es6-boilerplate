@@ -27,6 +27,6 @@ app.use(express.static(__dirname + '/public'))
 app.get('/', (req, res) => res.render('index'))
 
 var port = Number(process.env.PORT || 8080)
-app.listen(8080)
+app.listen(port)
 
 ;(msg => console.log(`Hello from ${msg} ! Listening on port ${port}`))('Node')
