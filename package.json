@@ -2,7 +2,7 @@
   "name": "es6-boilerplate",
   "version": "0.0.2",
   "description": "Express + ES6 + stylus boilerplate",
-  "main": "bootstrap.js",
+  "main": "app.js",
   "author": "Apox <npm@apox.fr>",
   "license": "MIT",
   "dependencies": {
