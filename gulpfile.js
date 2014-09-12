@@ -16,7 +16,7 @@ gulp.task('watch', function() {
 
   function rebundle() {
     return bundler.bundle()
-    .on('error', function(error){console.warn(error.message);})
+    .on('error', function(error){console.error(error.message);})
     .pipe(source('index.js'))
     .pipe(gulp.dest('./public'));
   }
