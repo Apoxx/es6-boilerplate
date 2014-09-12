@@ -3,7 +3,10 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var es6ify = require('es6ify');
-var watch;
+
+watchify.args.debug = true;
+
+es6ify.traceurOverrides = {};
 
 gulp.task('watch', function() {
   var bundler = watchify(browserify(__dirname + '/scripts/client/index.js', watchify.args))
