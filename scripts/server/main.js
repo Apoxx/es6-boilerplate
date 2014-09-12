@@ -1,3 +1,4 @@
+var path = require('path')
 var express = require('express')
 var stylus = require('stylus')
 var nib = require('nib')
