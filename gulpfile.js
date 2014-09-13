@@ -10,7 +10,8 @@ es6ify.traceurOverrides = {};
 
 gulp.task('watch', function() {
   var bundler = watchify(browserify(__dirname + '/scripts/client/index.js', watchify.args))
-  .transform(es6ify)
+  .transform(es6ify.configure(/^(?!.*node_modules)+.+\.js$/))
+  .add(es6ify.runtime)
   .on('update', rebundle)
   .on('log', function(log){console.log(log);});
 

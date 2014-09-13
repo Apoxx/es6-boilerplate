@@ -1,17 +1,17 @@
 {
   "name": "es6-boilerplate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Express + ES6 + stylus boilerplate",
   "main": "app.js",
   "author": "Apox <npm@apox.fr>",
   "license": "MIT",
   "dependencies": {
     "express": "^4.8.6",
-    "traceur": "0.0.61",
+    "traceur": "0.0.62",
     "stylus": "^0.48.1",
     "nib": "^1.0.3",
     "jade": "^1.5.0",
-    "jade-traceur": "0.0.2"
+    "jade-traceur": "0.0.3"
   },
   "devDependencies": {
     "gulp": "^3.8.7",
