@@ -17,7 +17,7 @@
     "gulp": "^3.8.7",
     "watchify": "^1.0.2",
     "browserify": "^5.11.0",
-    "es6ify": "git://github.com/Apoxx/es6ify#windowsfix",
+    "es6ify": "1.4.0",
     "vinyl-source-stream": "^0.1.1"
   }
 }
