@@ -10,7 +10,7 @@ var appDir = path.dirname(require.main.filename);
 var app = express()
 
 app.use(stylus.middleware({
-  src: appDir + '/style',
+  src: appDir + '/stylesheets',
   dest: appDir + '/public',
   compile: function (str, path) {
     return stylus(str)
