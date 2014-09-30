@@ -3,8 +3,8 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var es6ify = require('es6ify');
-var nodemon = require('gulp-nodemon')
-var livereload = require('gulp-livereload')
+var nodemon = require('gulp-nodemon');
+var livereload = require('gulp-livereload');
 
 watchify.args.debug = true;
 
