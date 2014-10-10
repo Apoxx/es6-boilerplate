@@ -1,23 +1,24 @@
 {
   "name": "es6-boilerplate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Express + ES6 + stylus boilerplate",
   "main": "app.js",
   "author": "Apox <npm@apox.fr>",
   "license": "MIT",
   "dependencies": {
     "express": "^4.8.6",
-    "traceur": "0.0.62",
     "stylus": "^0.48.1",
     "nib": "^1.0.3",
     "jade": "^1.5.0",
-    "jade-traceur": "0.0.3"
+    "jade-6to5": "jade-6to5",
+    "6to5-browserify": "0.0.9",
+    "6to5": "^1.7.9",
+    "watchify": "^1.0.6"
   },
   "devDependencies": {
     "gulp": "^3.8.7",
     "watchify": "^1.0.2",
     "browserify": "^5.11.0",
-    "es6ify": "1.4.0",
     "vinyl-source-stream": "^0.1.1",
     "gulp-nodemon": "^1.0.4",
     "gulp-livereload": "^2.1.1"

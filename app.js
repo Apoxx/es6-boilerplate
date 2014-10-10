@@ -1,5 +1,2 @@
-var traceur = require('traceur');
-traceur.require.makeDefault(function(filename) {
-  return filename.indexOf('node_modules') === -1;
-});
+require("6to5/register");
 require('./scripts/server/main');

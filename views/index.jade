@@ -3,7 +3,7 @@ html
     link(rel="stylesheet", href="index.css")
   body
     h1 Hello World !
-    script(src="index.js")
+    script(src="bundle.js")
     script
-      :traceur
+      :to5
         ;(msg => console.log(`Hello from ${msg} !`))('Jade')

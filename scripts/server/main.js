@@ -2,7 +2,7 @@ var path = require('path')
 var express = require('express')
 var stylus = require('stylus')
 var nib = require('nib')
-var traceur = require('jade-traceur')
+var to5 = require('jade-6to5')
 var jade = require('jade')
 
 var appDir = path.dirname(require.main.filename);
@@ -20,7 +20,7 @@ app.use(stylus.middleware({
   }
 }))
 
-jade = traceur({experimental: true}, jade)
+jade = to5({}, jade)
 app.engine('jade', jade.__express)
 app.set('view engine', 'jade')
 app.set('views', appDir + '/views')
