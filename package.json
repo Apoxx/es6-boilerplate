@@ -1,6 +1,6 @@
 {
   "name": "es6-boilerplate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Express + ES6 + stylus boilerplate",
   "main": "app.js",
   "author": "Apox <npm@apox.fr>",
@@ -10,9 +10,9 @@
     "stylus": "^0.48.1",
     "nib": "^1.0.3",
     "jade": "^1.5.0",
-    "jade-6to5": "0.0.1",
-    "6to5-browserify": "0.0.9",
-    "6to5": "^1.7.9",
+    "jade-6to5": "0.0.2",
+    "6to5-browserify": "0.0.10",
+    "6to5": "*",
     "watchify": "^1.0.6"
   },
   "devDependencies": {

@@ -13,7 +13,7 @@ livereload.listen();
 gulp.task('clientScripts', function() {
   var bundler = watchify(browserify(watchify.args))
   .require(__dirname + '/scripts/client/index.js', {entry: true})
-  .transform(to5.configure({sourceMap: 'inline'}))
+  .transform(to5)
   .on('update', rebundle)
   .on('log', function(log){console.log('[watchify] ' + log);});
 
