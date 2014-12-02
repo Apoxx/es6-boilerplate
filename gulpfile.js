@@ -8,8 +8,6 @@ var livereload = require('gulp-livereload');
 
 watchify.args.debug = true;
 
-livereload.listen();
-
 gulp.task('clientScripts', function() {
   var bundler = watchify(browserify(watchify.args))
   .require(__dirname + '/scripts/client/index.js', {entry: true})
