@@ -1,13 +1,13 @@
-var path = require('path')
-var express = require('express')
-var stylus = require('stylus')
-var nib = require('nib')
-var to5 = require('jade-6to5')
-var jade = require('jade')
+var path = require('path');
+var express = require('express');
+var stylus = require('stylus');
+var nib = require('nib');
+var to5 = require('jade-6to5');
+var jade = require('jade');
 
 var appDir = path.dirname(require.main.filename);
 
-var app = express()
+var app = express();
 
 app.use(stylus.middleware({
   src: appDir + '/stylesheets',
@@ -16,20 +16,20 @@ app.use(stylus.middleware({
     return stylus(str)
     .set('filename', path)
     .set('compress', true)
-    .use(nib())
+    .use(nib());
   }
-}))
+}));
 
-jade = to5({}, jade)
-app.engine('jade', jade.__express)
-app.set('view engine', 'jade')
-app.set('views', appDir + '/views')
+jade = to5({}, jade);
+app.engine('jade', jade.__express);
+app.set('view engine', 'jade');
+app.set('views', appDir + '/views');
 
-app.use(express.static(appDir + '/public'))
+app.use(express.static(appDir + '/public'));
 
-app.get('/', (req, res) => res.render('index'))
+app.get('/', (req, res) => res.render('index'));
 
-var port = Number(process.env.PORT || 8080)
-app.listen(port)
+var port = Number(process.env.PORT || 8080);
+app.listen(port);
 
-;(msg => console.log(`Hello from ${msg} ! Listening on port ${port}`))('Node')
+(msg => console.log(`Hello from ${msg} ! Listening on port ${port}`))('Node');
