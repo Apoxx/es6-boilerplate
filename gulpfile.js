@@ -63,7 +63,9 @@ gulp.task('reload', function(){
     livereload.changed();
 });
 
-gulp.task('dev', ['clientScripts', 'serverScripts', 'stylesheets', 'views']);
+gulp.task('dev', ['clientScripts', 'serverScripts', 'stylesheets', 'views'], function() {
+  livereload.listen();
+});
 
 gulp.task('prod', ['prodClientScripts']);
 
