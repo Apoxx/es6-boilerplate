@@ -82,7 +82,7 @@ gulp.task('dev-client', ['scripts-client', 'stylesheets'], function() {
   livereload.listen();
 });
 
-gulp.task('dev', ['dev-client', 'scripts-server','views']);
+gulp.task('dev', ['dev-client', 'scripts-server', 'views']);
 
 gulp.task('prod', ['scripts-client-prod', 'stylesheets-prod']);
 
