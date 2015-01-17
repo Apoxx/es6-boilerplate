@@ -1,24 +1,11 @@
 var path = require('path');
 var express = require('express');
-var stylus = require('stylus');
-var nib = require('nib');
 var to5 = require('jade-6to5');
 var jade = require('jade');
 
 var appDir = path.dirname(require.main.filename);
 
 var app = express();
-
-app.use(stylus.middleware({
-  src: appDir + '/stylesheets',
-  dest: appDir + '/public',
-  compile: function (str, path) {
-    return stylus(str)
-    .set('filename', path)
-    .set('compress', true)
-    .use(nib());
-  }
-}));
 
 jade = to5({}, jade);
 app.engine('jade', jade.__express);

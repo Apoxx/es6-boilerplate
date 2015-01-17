@@ -7,6 +7,8 @@ var nodemon = require('gulp-nodemon');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglifyjs');
 var buffer = require('vinyl-buffer');
+var stylus = require('gulp-stylus');
+var nib = require('nib');
 
 gulp.task('clientScripts', function() {
   watchify.args.debug = true;
@@ -43,7 +45,6 @@ gulp.task('prodClientScripts', function() {
   .pipe(gulp.dest('./public'));
 });
 
-
 gulp.task('serverScripts', function(){
   nodemon({ script: 'app.js', watch: ['scripts/server', 'scripts/shared']})
   .on('restart', function(){
@@ -52,7 +53,23 @@ gulp.task('serverScripts', function(){
 });
 
 gulp.task('stylesheets', function(){
-  gulp.watch('stylesheets/**/*', ['reload']);
+  gulp.watch('stylesheets/**/*', function(){
+    gulp.src('stylesheets/index.styl')
+    .pipe(stylus({
+      use: [nib()]
+    }))
+    .pipe(gulp.dest('./public'))
+    .pipe(livereload());
+  });
+});
+
+gulp.task('prodStylesheets', function(){
+  gulp.src('stylesheets/index.styl')
+  .pipe(stylus({
+    use: [nib()],
+    compress: true
+  }))
+  .pipe(gulp.dest('./public'));
 });
 
 gulp.task('views', function(){
@@ -67,6 +84,6 @@ gulp.task('dev', ['clientScripts', 'serverScripts', 'stylesheets', 'views'], fun
   livereload.listen();
 });
 
-gulp.task('prod', ['prodClientScripts']);
+gulp.task('prod', ['prodClientScripts', 'prodStylesheets']);
 
 gulp.task('default', ['dev']);
