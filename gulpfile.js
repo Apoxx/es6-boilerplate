@@ -10,7 +10,7 @@ var buffer = require('vinyl-buffer');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 
-gulp.task('clientScripts', function() {
+gulp.task('scripts-client', function() {
   watchify.args.debug = true;
   var bundler = watchify(browserify(watchify.args))
   .require(__dirname + '/scripts/client/main.js', {entry: true})
@@ -29,7 +29,7 @@ gulp.task('clientScripts', function() {
   return rebundle();
 });
 
-gulp.task('prodClientScripts', function() {
+gulp.task('scripts-client-prod', function() {
   process.env["NODE_ENV"] = 'production';
   return browserify({
     entries: [__dirname + '/scripts/client/main.js'],
@@ -45,7 +45,7 @@ gulp.task('prodClientScripts', function() {
   .pipe(gulp.dest('./public'));
 });
 
-gulp.task('serverScripts', function(){
+gulp.task('scripts-server', function(){
   nodemon({ script: 'app.js', watch: ['scripts/server', 'scripts/shared']})
   .on('restart', function(){
     livereload.changed();
@@ -63,7 +63,7 @@ gulp.task('stylesheets', function(){
   });
 });
 
-gulp.task('prodStylesheets', function(){
+gulp.task('stylesheets-prod', function(){
   gulp.src('stylesheets/index.styl')
   .pipe(stylus({
     use: [nib()],
@@ -73,17 +73,17 @@ gulp.task('prodStylesheets', function(){
 });
 
 gulp.task('views', function(){
-  gulp.watch('views/**/*', ['reload']);
-});
-
-gulp.task('reload', function(){
+  gulp.watch('views/**/*', ['reload'], function() {  	
     livereload.changed();
+  });
 });
 
-gulp.task('dev', ['clientScripts', 'serverScripts', 'stylesheets', 'views'], function() {
+gulp.task('dev-client', ['scripts-client', 'stylesheets'], function() {
   livereload.listen();
 });
 
-gulp.task('prod', ['prodClientScripts', 'prodStylesheets']);
+gulp.task('dev', ['dev-client', 'scripts-server','views']);
+
+gulp.task('prod', ['scripts-client-prod', 'stylesheets-prod']);
 
 gulp.task('default', ['dev']);
