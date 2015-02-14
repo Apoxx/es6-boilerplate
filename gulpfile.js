@@ -47,9 +47,7 @@ gulp.task('scripts-client-prod', function() {
 
 gulp.task('scripts-server', function(){
   nodemon({ script: 'app.js', watch: ['scripts/server', 'scripts/shared']})
-  .on('restart', function(){
-    livereload.changed();
-  })
+  .on('restart', livereload.changed);
 });
 
 gulp.task('stylesheets', function(){
@@ -73,9 +71,7 @@ gulp.task('stylesheets-prod', function(){
 });
 
 gulp.task('views', function(){
-  gulp.watch('views/**/*', ['reload'], function() {  	
-    livereload.changed();
-  });
+  gulp.watch('views/**/*', livereload.changed);
 });
 
 gulp.task('dev-client', ['scripts-client', 'stylesheets'], function() {
