@@ -1,23 +1,19 @@
-var path = require('path');
-var express = require('express');
-var to5 = require('jade-6to5');
-var jade = require('jade');
+import path from 'path';
+import express from 'express';
+import jade from 'jade';
+import jadeBabel from 'jade-babel';
 
-var appDir = path.dirname(require.main.filename);
+jade = jadeBabel({}, jade);
 
-var app = express();
+const appDir = path.dirname(require.main.filename);
+const port = Number(process.env.PORT || 8080);
 
-jade = to5({}, jade);
-app.engine('jade', jade.__express);
-app.set('view engine', 'jade');
-app.set('views', appDir + '/views');
-
-app.use(express.static(appDir + '/public'));
-
-app.get('/', (req, res) => res.render('index'));
-
-var port = Number(process.env.PORT || 8080);
-
-app.listen(port, () => {
+const app = express()
+.engine('jade', jade.__express)
+.set('view engine', 'jade')
+.set('views', `${appDir}/views`)
+.use(express.static(`${appDir}/public`))
+.get('/', (req, res) => res.render('index'))
+.listen(port, () => {
   (msg => console.log(`Hello from ${msg} ! Listening on port ${port}`))('Node');
 });

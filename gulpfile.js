@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
-var to5 = require('6to5-browserify');
+var babelify = require('babelify');
 var nodemon = require('gulp-nodemon');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglifyjs');
@@ -14,7 +14,7 @@ gulp.task('scripts-client', function() {
   watchify.args.debug = true;
   var bundler = watchify(browserify(watchify.args))
   .require(__dirname + '/scripts/client/main.js', {entry: true})
-  .transform(to5)
+  .transform(babelify)
   .on('update', rebundle)
   .on('log', function(log){console.log('[watchify] ' + log);});
 
@@ -35,7 +35,7 @@ gulp.task('scripts-client-prod', function() {
     entries: [__dirname + '/scripts/client/main.js'],
     debug: false
   })
-  .transform(to5.configure({
+  .transform(babelify.configure({
     sourceMap: false
   }))
   .bundle()
@@ -50,23 +50,25 @@ gulp.task('scripts-server', function(){
   .on('restart', livereload.changed);
 });
 
+function buildStyleSheets(compress) {
+  return gulp.src('stylesheets/index.styl')
+  .pipe(stylus({
+    use: [nib()],
+    compress: compress
+  }))
+  .pipe(gulp.dest('./public'));
+}
+
 gulp.task('stylesheets', function(){
+  buildStyleSheets(false);
   gulp.watch('stylesheets/**/*', function(){
-    gulp.src('stylesheets/index.styl')
-    .pipe(stylus({
-      use: [nib()]
-    }))
-    .pipe(gulp.dest('./public'))
+    buildStyleSheets(false)
     .pipe(livereload());
   });
 });
 
 gulp.task('stylesheets-prod', function(){
-  gulp.src('stylesheets/index.styl')
-  .pipe(stylus({
-    use: [nib()],
-    compress: true
-  }))
+  buildStyleSheets(true)
   .pipe(gulp.dest('./public'));
 });
 
