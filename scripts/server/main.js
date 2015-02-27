@@ -6,7 +6,7 @@ jade = jadeBabel({}, jade);
 
 const port = Number(process.env.PORT || 8080);
 
-const app = express()
+express()
 .engine('jade', jade.__express)
 .set('view engine', 'jade')
 .set('views', `${process.cwd()}/views`)

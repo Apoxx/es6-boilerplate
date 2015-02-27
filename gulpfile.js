@@ -1,3 +1,4 @@
+var path = require('path');
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -9,13 +10,14 @@ var uglify = require('gulp-uglifyjs');
 var buffer = require('vinyl-buffer');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
+var CLIEngine = require('eslint').CLIEngine;
+
 
 gulp.task('scripts-client', function() {
   watchify.args.debug = true;
   var bundler = watchify(browserify(watchify.args))
-  .require(__dirname + '/scripts/client/main.js', {entry: true})
+  .require(path.join(__dirname, '/scripts/client/main.js'), {entry: true})
   .transform(babelify)
-  .on('update', rebundle)
   .on('log', function(log){console.log('[watchify] ' + log);});
 
   function rebundle() {
@@ -25,14 +27,16 @@ gulp.task('scripts-client', function() {
     .pipe(gulp.dest('./public'))
     .pipe(livereload());
   }
+  bundler.on('update', rebundle);
 
   return rebundle();
 });
 
+
 gulp.task('scripts-client-prod', function() {
-  process.env["NODE_ENV"] = 'production';
+  process.env.NODE_ENV = 'production';
   return browserify({
-    entries: [__dirname + '/scripts/client/main.js'],
+    entries: [path.join(__dirname, '/scripts/client/main.js')],
     debug: false
   })
   .transform(babelify.configure({
@@ -48,6 +52,15 @@ gulp.task('scripts-client-prod', function() {
 gulp.task('scripts-server', function(){
   nodemon({ script: 'app.js', watch: ['scripts/server', 'scripts/shared']})
   .on('restart', livereload.changed);
+});
+
+gulp.task('lint', function() {
+  var cli = new CLIEngine();
+  var formatter = cli.getFormatter();
+  gulp.watch(path.join(__dirname, '/scripts/**/*'), function(event) {
+    var report = cli.executeOnFiles([event.path]);
+    console.log(formatter(report.results));
+  });
 });
 
 function buildStyleSheets(compress) {
@@ -76,7 +89,7 @@ gulp.task('views', function(){
   gulp.watch('views/**/*', livereload.changed);
 });
 
-gulp.task('dev-client', ['scripts-client', 'stylesheets'], function() {
+gulp.task('dev-client', ['lint', 'scripts-client', 'stylesheets'], function() {
   livereload.listen();
 });
 
