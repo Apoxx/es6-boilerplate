@@ -11,7 +11,7 @@ var buffer = require('vinyl-buffer');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 var CLIEngine = require('eslint').CLIEngine;
-
+var mocha = require('gulp-mocha');
 
 gulp.task('scripts-client', function() {
   watchify.args.debug = true;
@@ -31,7 +31,6 @@ gulp.task('scripts-client', function() {
 
   return rebundle();
 });
-
 
 gulp.task('scripts-client-prod', function() {
   process.env.NODE_ENV = 'production';
@@ -61,6 +60,18 @@ gulp.task('lint', function() {
     var report = cli.executeOnFiles([event.path]);
     console.log(formatter(report.results));
   });
+});
+
+gulp.task('test', function () {
+  require('babel/register');
+  return gulp.src(path.join(__dirname, '/scripts/tests/index.js'))
+      .pipe(mocha())
+      .once('error', function () {
+          process.exit(1);
+      })
+      .once('end', function () {
+          process.exit();
+      });
 });
 
 function buildStyleSheets(compress) {
