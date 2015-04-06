@@ -2,12 +2,12 @@ import express from 'express';
 import jade from 'jade';
 import jadeBabel from 'jade-babel';
 
-jade = jadeBabel({}, jade);
+const jadeWithBabel = jadeBabel({}, jade);
 
 const port = Number(process.env.PORT || 8080);
 
 express()
-.engine('jade', jade.__express)
+.engine('jade', jadeWithBabel.__express)
 .set('view engine', 'jade')
 .set('views', `${process.cwd()}/views`)
 .use(express.static(`${process.cwd()}/public`))
