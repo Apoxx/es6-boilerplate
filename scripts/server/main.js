@@ -13,5 +13,5 @@ express()
 .use(express.static(`${process.cwd()}/public`))
 .get('/', (req, res) => res.render('index'))
 .listen(port, () => {
-  (msg => console.log(`Hello from ${msg} ! Listening on port ${port}`))('Node');
+  console.log(`Listening on port ${port}`);
 });

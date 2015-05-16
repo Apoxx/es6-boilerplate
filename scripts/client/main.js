@@ -1,1 +1,7 @@
-(msg => console.log(`Hello from ${msg} !`))('Browserify');
+import x from './test';
+
+class test {
+
+}
+
+

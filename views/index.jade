@@ -6,4 +6,6 @@ html
     script(src="bundle.js")
     script
       :babel
-        (msg => console.log(`Hello from ${msg} !`))('Jade');
+        const browserSync = document.createElement('SCRIPT');
+        browserSync.src = `http://${location.hostname}:3000/browser-sync/browser-sync-client.2.7.1.js`;
+        document.body.appendChild(browserSync);
