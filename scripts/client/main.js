@@ -1,7 +1,1 @@
-import x from './test';
-
-class test {
-
-}
-
-
+console.log('Hello World !');
