@@ -106,6 +106,7 @@ gulp.task('views', function(){
 gulp.task('dev-client', ['lint', 'scripts-client', 'stylesheets'], function() {
   browserSync.init({
     logSnippet: false,
+    proxy: 'localhost:8080',
   });
 });
 

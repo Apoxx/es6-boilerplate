@@ -4,8 +4,3 @@ html
   body
     h1 Hello World !
     script(src="bundle.js")
-    script
-      :babel
-        const browserSync = document.createElement('SCRIPT');
-        browserSync.src = `http://${location.hostname}:3000/browser-sync/browser-sync-client.2.7.1.js`;
-        document.body.appendChild(browserSync);
