@@ -5,29 +5,32 @@
   "main": "app.js",
   "author": "Apox <npm@apox.fr>",
   "license": "MIT",
+  "scripts": {
+    "gulp": "gulp"
+  },
   "dependencies": {
     "babel": "~5.5",
-    "babel-runtime": "^5.5.4",
-    "eslint-plugin-react": "^2.5.0",
+    "babel-runtime": "^5.5.7",
     "express": "~4.12.4",
-    "jade": "~1.10.0",
+    "jade": "~1.11.0",
     "jade-babel": "~5.0.0",
     "should": "^6.0.3"
   },
   "devDependencies": {
-    "babel-eslint": "^3.1.13",
+    "eslint-plugin-react": "^2.5.0",
+    "babel-eslint": "^3.1.15",
     "babelify": "~6.1",
-    "browser-sync": "^2.7.6",
-    "browserify": "~10.2.3",
+    "browser-sync": "^2.7.10",
+    "browserify": "~10.2.4",
     "eslint": "^0.22.1",
     "gulp": "^3.9.0",
     "gulp-mocha": "^2.1.1",
-    "gulp-stylus": "~2.0.3",
+    "gulp-stylus": "~2.0.4",
     "gulp-uglifyjs": "~0.6.2",
     "nib": "~1.1.0",
     "node-dev": "^2.6.2",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.1.0",
-    "watchify": "~3.2.1"
+    "watchify": "~3.2.2"
   }
 }
